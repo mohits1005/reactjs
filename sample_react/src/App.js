@@ -9,6 +9,9 @@ class App extends Component {
         <header>
           Heisenberg
         </header>
+        <p>
+          This is a sample application.
+        </p>
       </div>
     );
   }

@@ -1,0 +1,6 @@
+1) Setup
+npx create-react-app sample_react
+cd sample_react
+npm start
+2)
+
