@@ -3,4 +3,7 @@ npx create-react-app sample_react
 cd sample_react
 npm start
 2)
-
+simple dom - index.html
+src > index.js > make component and shove it into html
+3) Babel > babeljs.io converts template code(jsx) to ugly(js) code
+4) 
