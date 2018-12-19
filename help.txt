@@ -6,4 +6,6 @@ npm start
 simple dom - index.html
 src > index.js > make component and shove it into html
 3) Babel > babeljs.io converts template code(jsx) to ugly(js) code
-4) 
+4) Define state of a component inside class based template using constructor
+5) Use setState method to modify the state object
+4)
