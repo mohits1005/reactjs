@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 class Searchbar extends Component{
     constructor(props){
         super(props);
-        this.state = {term:'Starting Value'};
+        this.state = {term:''};
     }
     render(){
         return(
