@@ -9,8 +9,8 @@ class Timer extends Component {
             <div>
                 <h3>Counter</h3>
                 <h1>{this.props.count}</h1>
-                <button className="btn btn-default" onClick={() => this.props.incrementCounter(this.props.count)}>+</button>&nbsp;&nbsp;
-                <button className="btn btn-default" onClick={() => this.props.decrementCounter(this.props.count)}>-</button>
+                <button className="btn btn-default" onClick={() => this.props.incrementCounter()}>+</button>&nbsp;&nbsp;
+                <button className="btn btn-default" onClick={() => this.props.decrementCounter()}>-</button>
             </div>
         );
     }

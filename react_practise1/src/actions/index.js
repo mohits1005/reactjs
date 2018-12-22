@@ -1,14 +1,10 @@
-export function incrementCounter(count) {
-    console.log('Increment '+count);
+export function incrementCounter() {
     return {
-        type: 'COUNTER_INCREMENT',
-        payload: count
+        type: 'COUNTER_INCREMENT'
     }
 }
-export function decrementCounter(count) {
-    console.log('Decrement ' + count);
+export function decrementCounter() {
     return {
-        type: 'COUNTER_DECREMENT',
-        payload: count
+        type: 'COUNTER_DECREMENT'
     }
 }
