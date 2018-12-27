@@ -26,3 +26,5 @@ Action -> Middleware(Manipulate action, log action or stop action) -> Reducer
 redux-promise (npm)
 redux-promise unwraps promise for us
 10) React sparklines (npm)
+11) react-router
+"History" listens for any change in url, if it's changes it informs ReactRouter
