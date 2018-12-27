@@ -10,11 +10,16 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 const Greeting = () => {
   return <div>Hey there!</div>
 }
+const Welcome = () => {
+  return <div>Welcome to app!</div>
+}
 ReactDOM.render(
-  <BrowserRouter>
+  <App>
+    <BrowserRouter>
       <Switch>
-        <Route path="/" component={App} exact={true} />>
-        <Route path="/greet" component={Greeting} />
+        <Route path="/" component={Welcome} exact={true} />>
+          <Route path="/greet" component={Greeting} />
       </Switch>
-  </BrowserRouter>
+    </BrowserRouter>
+  </App>
   , document.querySelector('.container'));
