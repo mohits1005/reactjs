@@ -6,11 +6,17 @@ import App from './components/app';
 import reducers from './reducers';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom'
 import PostsIndex from './components/posts_index';
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+import promise from 'redux-promise';
+import configureStore from './store.js'
+const store = configureStore();
+const createStoreWithMiddleware = applyMiddleware(
+  promise
+)(createStore);
 const Greeting = () => {
   return <div>Hey there!</div>
 }
 ReactDOM.render(
+  <Provider store={store}>
   <App>
     <BrowserRouter>
       <Switch>
@@ -19,4 +25,5 @@ ReactDOM.render(
       </Switch>
     </BrowserRouter>
   </App>
+  </Provider>
   , document.querySelector('.container'));
