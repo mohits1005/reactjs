@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
 import { bindActionCreators } from 'redux';
+import {Link} from 'react-router-dom';
 export class PostsIndex extends Component{
     componentWillMount(){
         console.log('here');
@@ -9,7 +10,14 @@ export class PostsIndex extends Component{
     }
     render(){
         return(
-            <div>Lists of blog posts</div>
+            <div>
+                <div className="text-xs-right">
+                    <Link to="/posts/new" className="btn btn-primary">
+                        Add a Post
+                    </Link>
+                </div>
+                Lists of blog posts
+            </div>
         );
     }
 }
