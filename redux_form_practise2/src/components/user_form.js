@@ -29,6 +29,5 @@ class UserForm extends Component{
     }
 }
 export default reduxForm({
-    form: 'userForm',
-    fields: ['firstName', 'lastName']
+    form: 'userForm'
 })(UserForm);
