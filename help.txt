@@ -28,3 +28,6 @@ redux-promise unwraps promise for us
 10) React sparklines (npm)
 11) react-router
 "History" listens for any change in url, if it's changes it informs ReactRouter
+12) redux-form
+step 1: user informs redux-form about form name and fields
+step 2: inform redux-form to handle submission of form
