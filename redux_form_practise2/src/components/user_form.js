@@ -9,17 +9,13 @@ class UserForm extends Component{
                     <div>
                         <label className="control-label">First Name</label>
                         <Field name="firstName"
-                            component={firstName =>
-                                <input type="text" className="form-control" {...firstName.input} placeholder="First Name" />
-                            }
+                            component={firstName => <input type="text" className="form-control" {...firstName.input} placeholder="First Name" />}
                         />
                     </div>
                     <div>
                         <label className="control-label">Last Name</label>
                         <Field name="lastName"
-                            component={lastName =>
-                                <input type="text" className="form-control" {...lastName.input} placeholder="Last Name" />
-                            }
+                            component={lastName => <input type="text" className="form-control" {...lastName.input} placeholder="Last Name" />}
                         />
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
