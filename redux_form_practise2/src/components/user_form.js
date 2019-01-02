@@ -1,5 +1,24 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+const validate = values => {
+    const errors = {}
+    if (!values.firstName) {
+        errors.firstName = 'Required'
+    } else if (values.firstName.length < 2) {
+        errors.firstName = 'Minimum be 2 characters or more'
+    }
+    if (!values.email) {
+        errors.email = 'Required'
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
+    }
+    if (!values.lastName) {
+        errors.lastName = 'Required'
+    } else if (values.lastName.length < 2) {
+        errors.lastName = 'Minimum be 2 characters or more'
+    }
+    return errors
+}
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
     <div>
         <label className="control-label">{label}</label>
@@ -11,7 +30,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 )
 class UserForm extends Component{
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, pristine, submitting } = this.props;
         return (
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -20,15 +39,16 @@ class UserForm extends Component{
                         />
                     </div>
                     <div>
-                        <Field name="lastName" component={renderField} label="First Name"
+                        <Field name="lastName" component={renderField} label="Last Name"
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary" disabled={pristine || submitting}  >Submit</button>
                 </div>
             </form>
         );
     }
 }
 export default reduxForm({
-    form: 'userForm'
+    form: 'userForm',
+    validate,
 })(UserForm);
