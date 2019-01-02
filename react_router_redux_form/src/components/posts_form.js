@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { createPosts } from '../actions/index';
+import { bindActionCreators } from 'redux';
+import { connect } from "react-redux";
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
     <div>
         <label className="control-label">{label}</label>
@@ -31,6 +34,8 @@ class PostsForm extends Component {
         );
     }
 }
+//connect: first argument in mapStateToProps, 2nd is mapDispatchToProps
+//reduxForm: 1st if form config, 2nd is mapStateToProps, 3rd is maoDispatchToProps
 export default reduxForm({
     form: 'postsForm'
 })(PostsForm);

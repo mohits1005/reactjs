@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {reduxForm} from 'redux-form';
 import PostsForm from './posts_form';
-export default class PostsNew extends Component{
+import { createPosts} from '../actions/index';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+export class PostsNew extends Component{
     handleSubmit = (vars) => {
-        console.log(vars);
+        let posts = { categories: vars.categories, content: vars.content, title: vars.title };
+        this.props.createPosts(posts);
     }
     render() {
         return (
@@ -14,3 +18,8 @@ export default class PostsNew extends Component{
         );
     }
 }
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ createPosts }, dispatch)
+}
+// Then connect the whole with the redux store
+export default connect(null, mapDispatchToProps)(PostsNew);
