@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+const FormattedDate = (props) => {
+  return (
+    <h2>It is {props.date.toLocaleTimeString()}.</h2>
+  );
+}
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,11 +22,12 @@ class App extends React.Component {
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
+
   render() {
     return (
       <div>
         <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        <FormattedDate date={this.state.date} />
       </div>
     );
   }
