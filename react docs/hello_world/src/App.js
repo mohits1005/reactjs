@@ -9,7 +9,7 @@ const FormattedDate = (props) => {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { date: new Date() };
+    this.state = { date: new Date(), isToggleOn: true };
   }
   componentDidMount() {
     this.timerID = setInterval(
@@ -22,12 +22,20 @@ class App extends React.Component {
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
+  handleClick = () => {
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }));
+  };
 
   render() {
     return (
       <div>
         <h1>Hello, world!</h1>
         <FormattedDate date={this.state.date} />
+        <button onClick={this.handleClick}>
+          {this.state.isToggleOn ? 'ON' : 'OFF'}
+        </button>
       </div>
     );
   }

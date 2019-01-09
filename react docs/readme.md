@@ -6,3 +6,4 @@ We also want to clear that timer whenever the DOM produced by the Clock is remov
 We can declare special methods on the component class to run some code when a component mounts and unmounts
 These methods are called “lifecycle methods”.
 The componentDidMount() method runs after the component output has been rendered to the DOM. 
+With JSX you pass a function as the event handler, rather than a string.
