@@ -1,18 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-const UserGreeting = () => {
-  return <h1>Welcome back!</h1>;
-}
-const GuestGreeting = () => {
-  return <h1>Please sign up.</h1>;
-}
-const GreetingMessage = (props) => {
-  const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn) {
-      return <UserGreeting />;
-    }
-    return <GuestGreeting />;
-}
+import SignIn from './components/signin';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -29,10 +17,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <GreetingMessage isLoggedIn={this.state.isLoggedIn}/>
-        <button onClick={this.handleClick} >
-          {this.state.isLoggedIn ? 'Sign Out' : 'Sign In'}
-        </button>
+        <SignIn />
       </div>
     );
   }
