@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SignIn from './components/signin';
+import ListMap from './components/listmap';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <SignIn />
+        <ListMap />
       </div>
     );
   }

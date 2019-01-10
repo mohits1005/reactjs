@@ -7,3 +7,4 @@ We can declare special methods on the component class to run some code when a co
 These methods are called “lifecycle methods”.
 The componentDidMount() method runs after the component output has been rendered to the DOM. 
 With JSX you pass a function as the event handler, rather than a string.
+we use the map() function to take an array of numbers and double their values. We assign the new array returned by map() to the variable doubled and log it
