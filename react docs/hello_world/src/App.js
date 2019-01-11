@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SampleForm from './components/sampleform';
+import Calculator from './components/calculator';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       <div>
         {/* <ListMap /> */}
-        <SampleForm />
+        <Calculator />
       </div>
     );
   }
