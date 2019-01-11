@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Calculator from './components/calculator';
+import ParentStateClass from './components/psclass';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,8 @@ class App extends React.Component {
     return (
       <div>
         {/* <ListMap /> */}
-        <Calculator />
+        {/* <Calculator /> */}
+        <ParentStateClass />
       </div>
     );
   }
