@@ -8,3 +8,5 @@ These methods are called “lifecycle methods”.
 The componentDidMount() method runs after the component output has been rendered to the DOM. 
 With JSX you pass a function as the event handler, rather than a string.
 we use the map() function to take an array of numbers and double their values. We assign the new array returned by map() to the variable doubled and log it
+At Facebook, we use React in thousands of components, and we haven’t found any use cases where we would recommend creating component inheritance hierarchies.
+Props and composition give you all the flexibility you need to customize a component’s look and behavior in an explicit and safe way.

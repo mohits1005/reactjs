@@ -21,7 +21,43 @@
 .App-link {
   color: #61dafb;
 }
+.FancyBorder {
+  padding: 10px 10px;
+  border: 10px solid;
+}
 
+.FancyBorder-blue {
+  border-color: blue;
+}
+
+.Dialog-title {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.Dialog-message {
+  font-size: larger;
+}
+.Contacts {
+  height: 100px; 
+  background: lightblue;
+}
+
+.Chat {
+  height: 100px; 
+  background: pink;
+}
+.SplitPane{
+  height: 100px; 
+}
+.SplitPane-left{
+width: 50%;
+float: left;
+}
+.SplitPane-right{
+width: 50%;
+float: left;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

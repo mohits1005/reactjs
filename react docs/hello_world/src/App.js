@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ParentStateClass from './components/psclass';
+import WelcomeDialog from './components/welcomedialog';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +19,8 @@ class App extends React.Component {
       <div>
         {/* <ListMap /> */}
         {/* <Calculator /> */}
-        <ParentStateClass />
+        {/* <ParentStateClass /> */}
+        <WelcomeDialog />
       </div>
     );
   }
