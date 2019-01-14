@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 export default class ProductTable extends Component {
     constructor(props) {
         super(props);
-        this.category_products = [];
     }
     render() {
         let products = this.props.products;
-        const rows = [];
+        let filterText = this.props.filterText;
+        let inStockOnly = this.props.inStockOnly;
+        let category_products = [];
+        let rows = [];
         products.forEach(product => {
-            if (!this.category_products[product.category])
-                this.category_products[product.category] = []
-            this.category_products[product.category].push(product);
+            if (!category_products[product.category])
+                category_products[product.category] = []
+            category_products[product.category].push(product);
         });
-        // console.log(this.category_products);
-        for (var category in this.category_products) {
-            // console.log(this.category_products[category]);
+        for (var category in category_products) {
             rows.push(
                 <tr key={category}>
                     <td colSpan="2">
@@ -22,11 +22,22 @@ export default class ProductTable extends Component {
                     </td>
                 </tr>
             );
-            this.category_products[category].forEach(product => {
+            category_products[category].forEach(product => {
+                const name = product.stocked ?
+                    product.name :
+                    <span style={{ color: 'red' }}>
+                        {product.name}
+                    </span>;
+                if (product.name.indexOf(filterText) === -1) {
+                    return;
+                } 
+                if (inStockOnly && !product.stocked) {
+                    return;
+                }
                 rows.push(
                     <tr key={product.name}>
                         <td>
-                            {product.name}
+                            {name}
                         </td>
                         <td>
                             {product.price}

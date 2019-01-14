@@ -13,6 +13,21 @@ const PRODUCTS = [
   { category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7' }
 ];
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filterText: '',
+      inStockOnly: false
+    };
+    this.changeFilterText = this.changeFilterText.bind(this);
+    this.changeStock = this.changeStock.bind(this);
+  }
+  changeFilterText(value){
+      this.setState({filterText:value});
+  }
+  changeStock(value) {
+    this.setState({ inStockOnly: value });
+  }
   render() {
     return (
       <div className="container-fluid">
@@ -21,8 +36,12 @@ class App extends Component {
             <h1>Shopping List</h1>
           </div>
         </div>
-        <SearchBar />
-        <ProductTable products={PRODUCTS}/>
+        <SearchBar filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+          changeFilterText={this.changeFilterText}
+          changeStock={this.changeStock}/>
+        <ProductTable products={PRODUCTS} filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly} />
       </div>
     );
   }
