@@ -36,3 +36,14 @@ Step 4: Define component of the field with key as name of field and value as inp
 13) Bootstrap
 npm install --save bootstrap
 import 'bootstrap/dist/css/bootstrap.css'; in src > index.js
+14) React router
+npm i --save react-router-dom
+index.js > import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
+ReactDOM.render(
+    <BrowserRouter>
+        <Switch>
+            <Route exact path="/" component={App} />
+            <Route exact path="/detail/:id" component={PostDetail} />
+        </Switch>
+    </BrowserRouter>
+, document.getElementById('root'));

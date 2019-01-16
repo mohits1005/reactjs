@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 class FeedList extends Component {
     constructor(props) {
         super(props);
@@ -9,16 +10,19 @@ class FeedList extends Component {
         const category = postData.category;
         const title = postData.title;
         const content = postData.content;
+        const link = "/detail/" + postData.id;
         return (
-            <div key={id} className="post-block">
-                <h3>{title}</h3>
-                <div className="category">
-                    {category}
+            <Link to={{ pathname: link, state: {postData}}} key={id} >
+                <div className="post-block">
+                    <h3>{title}</h3>
+                    <div className="category">
+                        {category}
+                    </div>
+                    <div className="content">
+                        {content}
+                    </div>
                 </div>
-                <div>
-                    {content}
-                </div>
-            </div>
+            </Link>
         );
     }
     render() {
