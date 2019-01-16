@@ -12,7 +12,7 @@ class FeedList extends Component {
         return (
             <div key={id} className="post-block">
                 <h3>{title}</h3>
-                <div>
+                <div className="category">
                     {category}
                 </div>
                 <div>
