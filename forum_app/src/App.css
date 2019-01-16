@@ -1,0 +1,12 @@
+.container{
+  padding-top: 2em;
+}
+.center-container{
+  margin: 0 auto;
+  float: none;
+}
+.post-block{
+  padding: 15px;
+  border: 1px solid #000000;
+  margin-bottom: 2em;
+}
