@@ -26,3 +26,20 @@ a{
   overflow: hidden;
   -webkit-mask-image: linear-gradient(180deg,#000 50%,transparent);
 }
+#page-numbers{
+  text-align: center;
+}
+#page-numbers li{
+  display: inline-block;
+  cursor: pointer;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #e5127d;
+  color: #ffffff;
+  margin-right: 10px;
+}
+#page-numbers li.unselected{
+  opacity: 0.4;
+}

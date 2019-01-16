@@ -3,7 +3,7 @@ import './App.css';
 import FeedList from './components/feed_list';
 const POSTS = [
   { 
-    id:1, category: 'Gaming, Entertainment, Film', title: 'EA has reportedly cancelled its story-driven Star Wars game', content: 'Now, according to Kotaku’s Jason Schreier, EA has officially cancelled the game, despite the studio responsible, EA Vancouver, having largely restarted from scratch with what it inherited from Visceral back in October 2017. EA was not immediately available for comment.' 
+    id: 1, category: 'Gaming, Entertainment, Film', title: 'EA has reportedly cancelled its story-driven Star Wars game', content: 'Now, according to Kotaku’s Jason Schreier, EA has officially cancelled the game, despite the studio responsible, EA Vancouver, having largely restarted from scratch with what it inherited from Visceral back in October 2017. EA was not immediately available for comment.The news is a sad end for a project that many fans hoped would carry the flame for narrative Star Wars games.he franchise has historically been home to some of the most formative role-playing titles in the industry, when LucasArts' 
   },
   {
     id: 2, category: 'Tech, YouTube, Culture', title: 'YouTube’s guidelines now address dangerous pranks following Bird Box, Tide Pod challenges', content: 'YouTube is home to many beloved viral challenges and pranks, but we need to make sure what’s funny doesn’t cross the line into also being harmful or dangerous. We’ve made it clear that our policies prohibiting harmful and dangerous content also extend to pranks with a perceived danger of serious physical injury. We don’t allow pranks that make victims believe they’re in serious physical danger — for example, a home invasion prank or a drive-by shooting prank.' 
@@ -18,11 +18,48 @@ const POSTS = [
     id: 5, category: 'Science', title: 'CERN wants to build the biggest, baddest particle collider ever', content: 'The design for the Future Collision Collider lays out a few different potential aspects of the facility. There’s the huge tunnel, which will let the thin beams of particles travel without having to navigate curves that are quite as tight (relatively) as the LHC’s. Then there’s a collider called a lepton collider which would, well, smash particles called leptons together. It could potentially give researchers more accurate measurements of the Higgs and other particles that scientists are just starting to understand. There’s also another larger hadron collider that would be able to smash particles together at even higher energies.' 
   }
 ];
+const postsPerPage = 3;
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentPage: 1
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(event) {
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
+  }
   render() {
+    const { currentPage } = this.state;
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = POSTS.slice(indexOfFirstPost, indexOfLastPost);
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(POSTS.length / postsPerPage); i++) {
+      pageNumbers.push(i);
+    }
+    const renderPageNumbers = pageNumbers.map(number => {
+      const selected = currentPage == number ? '': 'unselected';
+      return (
+        <li
+          key={number}
+          id={number}
+          onClick={this.handleClick}
+          className={selected}
+        >
+          {number}
+        </li>
+      );
+    });
     return (
       <div className="container center-container">
-        <FeedList posts={POSTS}/>
+        <FeedList posts={currentPosts}/>
+        <ul id="page-numbers">
+          {renderPageNumbers}
+        </ul>
       </div>
     );
   }
