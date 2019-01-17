@@ -43,3 +43,39 @@ a{
 #page-numbers li.unselected{
   opacity: 0.4;
 }
+.search{
+  text-overflow: ellipsis;
+  font-size: 1.5em !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  display: block !important;
+  padding: 8px !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  height: 68px !important;
+  color: #424242 !important;
+  padding-right: 70px !important;
+}
+.search-container{
+  background: #EFEFF0;
+  border-bottom: 1px solid #e7e7e8;
+}
+.search-btn{
+  font-family: Helvetica, sans-serif;
+-webkit-appearance: none !important;
+    background-color: #e5127d;
+    border: 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: .75em;
+    letter-spacing: .09em;
+    padding: 8px;
+    font-weight: bolder;
+    position: absolute;
+    right: 0px;
+    top: 17px;
+}
+.input-container{
+  display: inline-block;
+}
