@@ -79,3 +79,25 @@ a{
 .input-container{
   display: inline-block;
 }
+.post-detail-category{
+  color: #e5127d;
+  font-weight: 500;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  font-size: .85em;
+}
+.post-detail-title{
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: none;
+  font-size: 3em;
+}
+.post-detail-content{
+  font-weight: 300;
+  font-style: normal;
+  line-height: 28.8px;
+  text-transform: none;
+  font-size: 18px;
+  color: #424242;
+  margin-top: 1em;
+}
