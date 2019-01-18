@@ -21,11 +21,12 @@ class App extends Component {
       const term = value.trim();
       if (term !== '' && post.category.toLowerCase().includes(term.toLowerCase())) {
         filterPosts.push(post);
-        console.log(post.category+' ' + value);
       }
     });
     if(filterPosts.length>0)
       this.setState({POSTS: filterPosts});
+    else
+      this.setState({ POSTS });
   }
   handleClick(event) {
     this.setState({
