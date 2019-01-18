@@ -1,3 +1,9 @@
+body{
+  color: #424242;
+}
+h3{
+  color: #000000 !important;
+}
 .container{
   padding-top: 2em;
 }
@@ -15,7 +21,6 @@
 }
 a{
   text-decoration: none !important;
-  color: #000000 !important;
 }
 .post-block .category{
   color: #e5127d;
@@ -25,6 +30,7 @@ a{
   max-height: 120px;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(180deg,#000 50%,transparent);
+  color: #424242 !important;
 }
 #page-numbers{
   text-align: center;
@@ -98,6 +104,5 @@ a{
   line-height: 28.8px;
   text-transform: none;
   font-size: 18px;
-  color: #424242;
   margin-top: 1em;
 }
