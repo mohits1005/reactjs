@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Search from './search';
+import CommentsList from './comments_list';
+import COMMENTS from '../comments';
 class PostDetail extends Component {
     changeFilterText(value) {
         console.log('Search text: '+value);
@@ -11,7 +13,7 @@ class PostDetail extends Component {
         return (
             <div>
                 <Search changeFilterText={this.changeFilterText}/>
-                <div className="container center-container">
+                <div className="container center-container ">
                     <div className="post-detail-category">
                         {postData.category}
                     </div>
@@ -21,6 +23,8 @@ class PostDetail extends Component {
                     <div className="post-detail-content">
                         {postData.content}
                     </div>
+                    <hr />
+                    <CommentsList comments={COMMENTS}/>
                 </div>
             </div>
         );

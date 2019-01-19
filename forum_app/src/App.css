@@ -106,3 +106,37 @@ a{
   font-size: 18px;
   margin-top: 1em;
 }
+.comments-container{
+  color: #424242;
+  font-style: normal;
+  line-height: 19.5px;
+  text-transform: none;
+  font-size: 13px;
+}
+.comments-container .username{
+  color: #e5127d;
+  font-size: 18px;
+  line-height: 18px;
+  margin-bottom: 10px;
+}
+.comments-container .time{
+  margin-top: 10px;
+}
+.comments-container .comment-wrap{
+  margin-bottom: 20px;
+}
+.comments-container .comments-count{
+  color: #424242;
+  font-style: normal;
+  font-weight: bolder;
+  letter-spacing: .05em;
+  line-height: normal;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  font-family: "Heroic",Arial Narrow,Helvetica,sans-serif;
+}
+.comments-container .add-comment{
+  color: #e5127d;
+  cursor: pointer;
+}
