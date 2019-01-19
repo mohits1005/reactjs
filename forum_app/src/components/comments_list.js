@@ -5,9 +5,9 @@ class CommentsList extends Component {
         this.renderComment = this.renderComment.bind(this);
     }
     renderComment(commentData) {
-        const {text, userName} = commentData;
+        const {id, text, userName} = commentData;
         return (
-            <div className="comment-wrap">
+            <div className="comment-wrap" key={id}>
                 <div className="username">
                     {userName}
                 </div>

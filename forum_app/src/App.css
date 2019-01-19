@@ -140,3 +140,23 @@ a{
   color: #e5127d;
   cursor: pointer;
 }
+.post-detail-container{
+  padding-bottom: 3em;
+}
+.add-comment-btn{
+  font-family: Helvetica, sans-serif;
+  -webkit-appearance: none;
+  background-color: #e5127d;
+  border: 0;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: .09em;
+  padding: 8px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  font-weight: bolder;
+  font-stretch: 100%;
+  line-height: 21px;
+}
