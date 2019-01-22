@@ -3,19 +3,43 @@ class CommentsList extends Component {
     constructor(props) {
         super(props);
         this.renderComment = this.renderComment.bind(this);
+        this.renderReplies = this.renderReplies.bind(this);
+    }
+    renderReplies(repliesData){
+        const { id, text, userName } = repliesData;
+        return (
+            <div key={id}>
+                <div className="comment-wrap">
+                    <div className="username">
+                        {userName}
+                    </div>
+                    <div>
+                        {text}
+                    </div>
+                    <div className="time">
+                        Posted on Jan 18, 2019
+                    </div>
+                </div>
+            </div>
+        );
     }
     renderComment(commentData) {
-        const {id, text, userName} = commentData;
+        const { id, text, userName, replies} = commentData;
         return (
-            <div className="comment-wrap" key={id}>
-                <div className="username">
-                    {userName}
+            <div key={id}>
+                <div className="comment-wrap">
+                    <div className="username">
+                        {userName}
+                    </div>
+                    <div>
+                        {text}
+                    </div>
+                    <div className="time">
+                        Posted on Jan 18, 2019
+                    </div>
                 </div>
-                <div>
-                    {text}
-                </div>
-                <div className="time">
-                    Posted on Jan 18, 2019
+                <div className="replies-wrap">
+                    { replies.map(this.renderReplies) }
                 </div>
             </div>
         );
