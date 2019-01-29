@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 class CommentsList extends Component {
     constructor(props) {
         super(props);
-        this.state = { value: '', isVisible: false };
+        this.state = { value: '', isVisible: false, isEditCommentVisible: false };
         this.renderComment = this.renderComment.bind(this);
         this.renderReplies = this.renderReplies.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.showAddComment = this.showAddComment.bind(this);
+        this.toggleEditComment = this.toggleEditComment.bind(this);
     }
     onInputChange(event) {
         this.setState({ value: event.target.value });
@@ -41,20 +42,38 @@ class CommentsList extends Component {
             </div>
         );
     }
+    toggleEditComment(flag){
+        this.setState({ isEditCommentVisible: flag });
+    }
     renderComment(commentData) {
-        const { id, text, userName, replies} = commentData;
+        const { id, userId, text, userName, replies} = commentData;
+        const editComment = 
+            <div className="edit-comment-wrap" onClick={() => this.toggleEditComment(true)}>
+            <div className="edit-comment-text">Edit</div>
+        </div>;
+        const saveComment =
+        <div className="save-comment-wrap">
+            <input type="text" className="form-control" value={text}/>
+            <div className="save-comment-text">Save</div>
+                <div className="cancel-comment-text" onClick={() => this.toggleEditComment(false)}>Cancel</div>
+        </div>;
+        const isEditCommentVisible = this.state.isEditCommentVisible;
+        const comment = 
+        <div className="comment-text-wrap">
+            {text}
+        </div>
         return (
             <div key={id}>
                 <div className="comment-wrap">
                     <div className="username">
                         {userName}
                     </div>
-                    <div>
-                        {text}
-                    </div>
+                    {userId === 10 && isEditCommentVisible === false && comment}
+                    {userId === 10 && isEditCommentVisible === true && saveComment }
                     <div className="time">
                         Posted on Jan 18, 2019
                     </div>
+                    {userId === 10 && isEditCommentVisible === false && editComment }
                 </div>
                 <div className="replies-wrap">
                     { replies.map(this.renderReplies) }

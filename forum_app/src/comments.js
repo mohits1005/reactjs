@@ -12,7 +12,7 @@ const COMMENTS = [
         }]
     },
     {
-        id: 3, userId: 4, userName: 'John.M.', text: 'Disco is great. The season 2 opener was a lot of fun and I’m looking forward to seeing more of Captain Pike. Anybody else notice what the fortune cookie Pike found on the floor said at the end? ', replies: []
+        id: 3, userId: 10, userName: 'John.M.', text: 'Disco is great. The season 2 opener was a lot of fun and I’m looking forward to seeing more of Captain Pike. Anybody else notice what the fortune cookie Pike found on the floor said at the end? ', replies: []
     }
 ];
 export default COMMENTS;

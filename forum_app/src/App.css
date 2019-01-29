@@ -165,3 +165,11 @@ a{
   padding-left: 3%;
   border-left: 3px solid #e7e7e8;
 }
+.edit-comment-text,.save-comment-text,.cancel-comment-text{
+  cursor: pointer;
+  font-weight: bolder;
+  display: inline;
+}
+.save-comment-text{
+  margin-right: 10px;
+}
