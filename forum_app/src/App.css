@@ -176,3 +176,24 @@ a{
 .add-input-wrap hr{
   margin-top: 0px;
 }
+.comment-wrap .time,.comment-wrap .add-reply{
+  display: inline-block;
+}
+.comment-wrap .time{
+  margin-right: 10px;
+}
+.comment-wrap .add-reply{
+  font-weight: bolder;
+  cursor: pointer;
+}
+.add-new-reply{
+  margin-bottom: 20px;
+}
+.add-new-reply .save-reply-text,.add-new-reply .cancel-reply-text{
+  display: inline-block;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.add-new-reply .save-reply-text{
+  margin-right: 10px;
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 class CommentsList extends Component {
     constructor(props) {
         super(props);
-        this.state = { value: '', isVisible: false, editCommentIndex: -1, editCommentValue:'' };
+        this.state = { value: '', isVisible: false, editCommentIndex: -1, editCommentValue: '', isReplyVisible: false, replyCommentIndex: -1};
         this.renderComment = this.renderComment.bind(this);
         this.renderReplies = this.renderReplies.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -11,6 +11,7 @@ class CommentsList extends Component {
         this.toggleEditComment = this.toggleEditComment.bind(this);
         this.saveEditComment = this.saveEditComment.bind(this);
         this.editCommentOnChange = this.editCommentOnChange.bind(this);
+        this.toggleReply = this.toggleReply.bind(this);
     }
     onInputChange(event) {
         this.setState({ value: event.target.value });
@@ -45,6 +46,9 @@ class CommentsList extends Component {
             </div>
         );
     }
+    toggleReply(id){
+        this.setState({ replyCommentIndex: id});
+    }
     toggleEditComment(id, value){
         this.setState({ editCommentIndex: id });
         if(value){
@@ -73,9 +77,16 @@ class CommentsList extends Component {
             <div className="cancel-comment-text" onClick={() => this.toggleEditComment(-1)}>Cancel</div>
         </div>;
         const editCommentIndex = this.state.editCommentIndex;
+        const replyCommentIndex = this.state.replyCommentIndex;
         const comment = 
         <div className="comment-text-wrap">
             {text}
+        </div>
+        const addNewReply =
+        <div className="add-new-reply">
+            <input type="text" className="form-control" placeholder="Add Reply here.."/>
+            <div className="save-reply-text" >Save</div>
+            <div className="cancel-reply-text" onClick={() => this.toggleReply(-1)}>Cancel</div>
         </div>
         return (
             <div key={id}>
@@ -88,11 +99,15 @@ class CommentsList extends Component {
                     <div className="time">
                         Posted on Jan 18, 2019
                     </div>
+                    <div className="add-reply" onClick={() => this.toggleReply(id)}>
+                        Reply
+                    </div>
                     {userId === 10 && id !== editCommentIndex && editComment }
                 </div>
                 <div className="replies-wrap">
                     { replies.map(this.renderReplies) }
                 </div>
+                {id === replyCommentIndex && addNewReply}
             </div>
         );
     }
