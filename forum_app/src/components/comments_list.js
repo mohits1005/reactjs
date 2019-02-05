@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 class CommentsList extends Component {
     constructor(props) {
         super(props);
-        this.state = { value: '', isVisible: false, isEditCommentVisible: false };
+        this.state = { value: '', isVisible: false, editCommentIndex: -1 };
         this.renderComment = this.renderComment.bind(this);
         this.renderReplies = this.renderReplies.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -22,6 +22,7 @@ class CommentsList extends Component {
         const text = this.state.value;
         const replies = [];
         const comment = { id, userId, userName, text, replies };
+        this.setState({value:''});
         this.props.onAddcomment(comment);
     }
     renderReplies(repliesData){
@@ -42,22 +43,26 @@ class CommentsList extends Component {
             </div>
         );
     }
-    toggleEditComment(flag){
-        this.setState({ isEditCommentVisible: flag });
+    toggleEditComment(id){
+        this.setState({ editCommentIndex: id });
+        console.log('editCommentIndex set to '+id);
+    }
+    saveEditComment(){
+        return;
     }
     renderComment(commentData) {
         const { id, userId, text, userName, replies} = commentData;
         const editComment = 
-            <div className="edit-comment-wrap" onClick={() => this.toggleEditComment(true)}>
+            <div className="edit-comment-wrap" onClick={() => this.toggleEditComment(id)}>
             <div className="edit-comment-text">Edit</div>
         </div>;
         const saveComment =
         <div className="save-comment-wrap">
-            <input type="text" className="form-control" value={text}/>
+            <input type="text" className="form-control" value={text} onChange={this.saveEditComment}/>
             <div className="save-comment-text">Save</div>
-                <div className="cancel-comment-text" onClick={() => this.toggleEditComment(false)}>Cancel</div>
+                <div className="cancel-comment-text" onClick={() => this.toggleEditComment(-1)}>Cancel</div>
         </div>;
-        const isEditCommentVisible = this.state.isEditCommentVisible;
+        const editCommentIndex = this.state.editCommentIndex;
         const comment = 
         <div className="comment-text-wrap">
             {text}
@@ -68,12 +73,12 @@ class CommentsList extends Component {
                     <div className="username">
                         {userName}
                     </div>
-                    {userId === 10 && isEditCommentVisible === false && comment}
-                    {userId === 10 && isEditCommentVisible === true && saveComment }
+                    {id != editCommentIndex && comment}
+                    {userId === 10 && id === editCommentIndex && saveComment }
                     <div className="time">
                         Posted on Jan 18, 2019
                     </div>
-                    {userId === 10 && isEditCommentVisible === false && editComment }
+                    {userId === 10 && id != editCommentIndex && editComment }
                 </div>
                 <div className="replies-wrap">
                     { replies.map(this.renderReplies) }
@@ -89,11 +94,14 @@ class CommentsList extends Component {
         const comments_count = comments.length;
         const comments_string = comments_count > 0 ? 'There are '+comments_count + ' Comments ':'';
         const addinput =
-            <div className="input-wrap">
-                <form className="add-input-form" onSubmit={this.onFormSubmit}>
-                    <input className="add-comment-input form-control" type="text" placeholder="Add Comment..." onChange={this.onInputChange} value={this.state.value} />
-                    <button type="submit" className="add-comment-btn">POST</button>
-                </form>
+            <div className="add-input-wrap">
+                <hr/>
+                <div className="input-wrap">
+                    <form className="add-input-form" onSubmit={this.onFormSubmit}>
+                        <input className="add-comment-input form-control" type="text" placeholder="Add Comment..." onChange={this.onInputChange} value={this.state.value} />
+                        <button type="submit" className="add-comment-btn">POST</button>
+                    </form>
+                </div>
             </div>;
         return (
             <div>

@@ -173,3 +173,6 @@ a{
 .save-comment-text{
   margin-right: 10px;
 }
+.add-input-wrap hr{
+  margin-top: 0px;
+}
