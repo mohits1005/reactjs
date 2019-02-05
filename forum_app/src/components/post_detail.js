@@ -7,6 +7,7 @@ class PostDetail extends Component {
         super(props);
         this.state = {comments: COMMENTS};
         this.onAddcomment = this.onAddcomment.bind(this);
+        this.onEditcomment = this.onEditcomment.bind(this);
     }
     onAddcomment(comment){
         const comments = this.state.comments;
@@ -15,6 +16,18 @@ class PostDetail extends Component {
     }
     changeFilterText(value) {
         return;
+    }
+    onEditcomment(editedComment){
+        const comments = this.state.comments;
+        const new_comments = [];
+        comments.forEach(comment => {
+            let data = comment;
+            if (comment.id === editedComment.id){
+                data.text = editedComment.val;
+            }
+            new_comments.push(data);
+        });
+        this.setState({ comments: new_comments });
     }
     render() {
         const { postData } = this.props.location.state;
@@ -32,7 +45,7 @@ class PostDetail extends Component {
                         {postData.content}
                     </div>
                     <hr />
-                    <CommentsList comments={this.state.comments} onAddcomment={this.onAddcomment}/>
+                    <CommentsList comments={this.state.comments} onAddcomment={this.onAddcomment} onEditcomment={this.onEditcomment}/>
                 </div>
             </div>
         );
