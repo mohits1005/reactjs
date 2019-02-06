@@ -8,6 +8,7 @@ class PostDetail extends Component {
         this.state = {comments: COMMENTS};
         this.onAddcomment = this.onAddcomment.bind(this);
         this.onEditcomment = this.onEditcomment.bind(this);
+        this.onAddReply = this.onAddReply.bind(this);
     }
     onAddcomment(comment){
         const comments = this.state.comments;
@@ -29,6 +30,26 @@ class PostDetail extends Component {
         });
         this.setState({ comments: new_comments });
     }
+    onAddReply(reply) {
+        const commentId = reply.commentId;
+        const comments = this.state.comments;
+        const new_comments = [];
+        comments.forEach(comment => {
+            let data = comment;
+            if (comment.id === commentId) {
+                if(data.replies === undefined || data.replies.length === 0)
+                {
+                    data.replies = [reply];
+                }
+                else
+                {
+                    data.replies.push(reply);
+                }
+            }
+            new_comments.push(data);
+        });
+        this.setState({ comments: new_comments });
+    }
     render() {
         const { postData } = this.props.location.state;
         return (
@@ -45,7 +66,7 @@ class PostDetail extends Component {
                         {postData.content}
                     </div>
                     <hr />
-                    <CommentsList comments={this.state.comments} onAddcomment={this.onAddcomment} onEditcomment={this.onEditcomment}/>
+                    <CommentsList comments={this.state.comments} onAddcomment={this.onAddcomment} onEditcomment={this.onEditcomment} onAddReply={this.onAddReply}/>
                 </div>
             </div>
         );

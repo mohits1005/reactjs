@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 class CommentsList extends Component {
     constructor(props) {
         super(props);
-        this.state = { value: '', isVisible: false, editCommentIndex: -1, editCommentValue: '', isReplyVisible: false, replyCommentIndex: -1};
+        this.state = { value: '', isVisible: false, editCommentIndex: -1, editCommentValue: '', isReplyVisible: false, replyCommentIndex: -1, addReplyValue: ''};
         this.renderComment = this.renderComment.bind(this);
         this.renderReplies = this.renderReplies.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -12,9 +12,14 @@ class CommentsList extends Component {
         this.saveEditComment = this.saveEditComment.bind(this);
         this.editCommentOnChange = this.editCommentOnChange.bind(this);
         this.toggleReply = this.toggleReply.bind(this);
+        this.addNewReplyOnchange = this.addNewReplyOnchange.bind(this);
+        this.saveNewReply = this.saveNewReply.bind(this);
     }
     onInputChange(event) {
         this.setState({ value: event.target.value });
+    }
+    addNewReplyOnchange(event){
+        this.setState({ addReplyValue: event.target.value });
     }
     onFormSubmit(event) {
         event.preventDefault();
@@ -64,6 +69,23 @@ class CommentsList extends Component {
         this.props.onEditcomment({id, val});
         this.toggleEditComment(-1);
     }
+    saveNewReply(commentId){
+        const text = this.state.addReplyValue;
+        const comments = this.props.comments;
+        let id = 1;
+        comments.forEach(comment => {
+            if (comment.id === commentId) {
+                if (comment.replies !== undefined && comment.replies.length > 0) {
+                    id = comment.replies.length + 1;
+                }
+            }
+        });
+        const userId = 10;
+        const userName = 'Anonymous';
+        const reply = { commentId, id, userId, userName, text };
+        this.props.onAddReply(reply);
+        this.toggleReply(-1);
+    }
     renderComment(commentData) {
         const { id, userId, text, userName, replies} = commentData;
         const editComment = 
@@ -78,14 +100,15 @@ class CommentsList extends Component {
         </div>;
         const editCommentIndex = this.state.editCommentIndex;
         const replyCommentIndex = this.state.replyCommentIndex;
+        const addReplyValue = this.state.addReplyValue;
         const comment = 
         <div className="comment-text-wrap">
             {text}
         </div>
         const addNewReply =
         <div className="add-new-reply">
-            <input type="text" className="form-control" placeholder="Add Reply here.."/>
-            <div className="save-reply-text" >Save</div>
+                <input type="text" className="form-control" placeholder="Add Reply here.." value={addReplyValue} onChange={this.addNewReplyOnchange} />
+                <div className="save-reply-text" onClick={() => this.saveNewReply(id)}>Save</div>
             <div className="cancel-reply-text" onClick={() => this.toggleReply(-1)}>Cancel</div>
         </div>
         return (
