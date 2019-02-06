@@ -8,7 +8,7 @@ const COMMENTS = [
     },
     {
         id: 2, userId: 54, userName: 'murso74', text: 'I can’t believe I’m 44 and I barely knew this was a thing', replies: [{
-            id: 1, userId: 8, userName: 'chaos215bar2', text: 'Hmm…. Got to get around to pulling out the series on LaserDisc and actually watching it finally. (Yes, seriously. Seems a fitting format all things considered.)'
+            id: 1, userId: 10, userName: 'John.M.', text: 'Hmm…. Got to get around to pulling out the series on LaserDisc and actually watching it finally. (Yes, seriously. Seems a fitting format all things considered.)'
         }]
     },
     {

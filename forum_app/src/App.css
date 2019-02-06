@@ -94,14 +94,12 @@ a{
 }
 .post-detail-title{
   font-weight: 600;
-  line-height: 1.2;
   text-transform: none;
   font-size: 3em;
 }
 .post-detail-content{
   font-weight: 300;
   font-style: normal;
-  line-height: 28.8px;
   text-transform: none;
   font-size: 18px;
   margin-top: 1em;
@@ -109,14 +107,12 @@ a{
 .comments-container{
   color: #424242;
   font-style: normal;
-  line-height: 19.5px;
   text-transform: none;
   font-size: 13px;
 }
 .comments-container .username{
   color: #e5127d;
   font-size: 18px;
-  line-height: 18px;
   margin-bottom: 10px;
 }
 .comments-container .time{
@@ -130,7 +126,6 @@ a{
   font-style: normal;
   font-weight: bolder;
   letter-spacing: .05em;
-  line-height: normal;
   text-transform: uppercase;
   font-size: 1.5em;
   margin-bottom: 20px;
@@ -158,7 +153,6 @@ a{
   margin-top: 10px;
   font-weight: bolder;
   font-stretch: 100%;
-  line-height: 21px;
 }
 .replies-wrap{
   margin-left: 2%;
@@ -189,7 +183,7 @@ a{
 .add-new-reply{
   margin-bottom: 20px;
 }
-.add-new-reply .save-reply-text,.add-new-reply .cancel-reply-text{
+.add-new-reply .save-reply-text,.add-new-reply .cancel-reply-text, .comment-wrap .edit-reply-text{
   display: inline-block;
   font-weight: bolder;
   cursor: pointer;
