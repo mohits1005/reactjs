@@ -16,6 +16,7 @@ class CommentsList extends Component {
         this.saveNewReply = this.saveNewReply.bind(this);
         this.toggleEditReply = this.toggleEditReply.bind(this);
         this.editReplyOnChange = this.editReplyOnChange.bind(this);
+        this.saveEditReply = this.saveEditReply.bind(this);
     }
     onInputChange(event) {
         this.setState({ value: event.target.value });
@@ -43,6 +44,13 @@ class CommentsList extends Component {
         else
             this.setState({editReplyData:{replyId, commentId, text}})
     }
+    saveEditReply() {
+        const replyId = this.state.editReplyData.replyId;
+        const commentId = this.state.editReplyData.commentId;
+        const text = this.state.editReplyData.text;
+        this.props.onEditReply({ replyId, commentId, text });
+        this.toggleEditReply(-1);
+    }
     editReplyOnChange(event){
         const replyId = this.state.editReplyData.replyId;
         const commentId = this.state.editReplyData.commentId;
@@ -61,7 +69,7 @@ class CommentsList extends Component {
         const editReplyField =
             <div className="save-comment-wrap">
                 <input type="text" className="form-control" value={editCommentText} onChange={this.editReplyOnChange}/>
-                <div className="save-comment-text">Save</div>
+                <div className="save-comment-text" onClick={this.saveEditReply}>Save</div>
                 <div className="cancel-comment-text" onClick={() => this.toggleEditReply(-1)}>Cancel</div>
             </div>;
         return (
@@ -77,7 +85,7 @@ class CommentsList extends Component {
                     <div className="time">
                         Posted on Jan 18, 2019
                     </div>
-                    {userId === 10 && id !== editReplyId &&  editReplyText}
+                    {userId === 10 && (editCommentId !== commentId || id !== editReplyId) &&  editReplyText}
                 </div>
             </div>
         );
