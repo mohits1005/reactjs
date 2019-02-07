@@ -11,9 +11,7 @@ class PostDetail extends Component {
         this.onAddReply = this.onAddReply.bind(this);
         this.onEditReply = this.onEditReply.bind(this);
     }
-    onAddcomment(comment){
-        const comments = this.state.comments;
-        comments.push(comment);
+    onAddcomment(comments){
         this.setState({ comments });
     }
     changeFilterText(value) {

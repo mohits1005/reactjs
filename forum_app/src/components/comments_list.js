@@ -22,7 +22,8 @@ class CommentsList extends Component {
         const text = this.state.value;
         const replies = [];
         const comment = { id, userId, userName, text, replies };
-        this.props.onAddcomment(comment);
+        comments.push(comment);
+        this.props.onAddcomment(comments);
         this.setState({ value: '' });
     }
     onEditcomment(editedComment){
