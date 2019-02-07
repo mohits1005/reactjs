@@ -19,17 +19,8 @@ class PostDetail extends Component {
     changeFilterText(value) {
         return;
     }
-    onEditcomment(editedComment){
-        const comments = this.state.comments;
-        const new_comments = [];
-        comments.forEach(comment => {
-            let data = comment;
-            if (comment.id === editedComment.id){
-                data.text = editedComment.val;
-            }
-            new_comments.push(data);
-        });
-        this.setState({ comments: new_comments });
+    onEditcomment(comments){
+        this.setState({ comments});
     }
     onEditReply(editedReply) {
         const comments = this.state.comments;

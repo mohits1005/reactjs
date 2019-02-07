@@ -8,6 +8,7 @@ class CommentsList extends Component {
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.showAddComment = this.showAddComment.bind(this);
+        this.onEditcomment = this.onEditcomment.bind(this);
     }
     onInputChange(event) {
         this.setState({ value: event.target.value });
@@ -24,10 +25,22 @@ class CommentsList extends Component {
         this.props.onAddcomment(comment);
         this.setState({ value: '' });
     }
+    onEditcomment(editedComment){
+        const comments = this.props.comments;
+        const new_comments = [];
+        comments.forEach(comment => {
+            let data = comment;
+            if (comment.id === editedComment.id) {
+                data.text = editedComment.val;
+            }
+            new_comments.push(data);
+        });
+        this.props.onEditcomment(new_comments);
+    }
     renderComment(commentData) {
         return (
             <div key={commentData.id}>
-                <Comment commentData={commentData}/>
+                <Comment commentData={commentData} onEditcomment={this.onEditcomment}/>
             </div>
         );
     }
