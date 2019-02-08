@@ -71,7 +71,6 @@ class EditCommentInput extends Component {
     }
     render() {
         const editCommentValue = this.state.editCommentValue;
-        if (!this.props.isVisible)
         return (
             <div className="save-comment-wrap">
                 <input type="text" className="form-control" value={editCommentValue} onChange={this.onInputChange} />
