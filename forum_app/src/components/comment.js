@@ -3,9 +3,11 @@ import Reply from './reply';
 class Comment extends Component {
     constructor(props) {
         super(props);
-        this.state = { editCommentId: -1 }
+        this.state = { editCommentId: -1, addReplyCommentId: -1 }
         this.toggleEditComment = this.toggleEditComment.bind(this);
         this.saveEditComment = this.saveEditComment.bind(this);
+        this.toggleReply = this.toggleReply.bind(this);
+        this.onAddReply = this.onAddReply.bind(this);
     }
     toggleEditComment(id) {
         this.setState({ editCommentId: id});
@@ -23,6 +25,13 @@ class Comment extends Component {
         this.props.onEditcomment({ id, val });
         this.toggleEditComment(-1);
     }
+    toggleReply(id){
+        this.setState({ addReplyCommentId: id});
+    }
+    onAddReply(reply){
+        // console.log(reply);
+        this.props.onAddReply(reply);
+    }
     render() {
         const { id, userId, text, userName, replies } = this.props.commentData;
         const editCommentId= this.state.editCommentId;
@@ -37,6 +46,13 @@ class Comment extends Component {
                 <EditCommentInput text={text} saveEditComment={this.saveEditComment} toggleEditComment={this.toggleEditComment}>
                 </EditCommentInput>;
         }
+        const addReplyCommentId = this.state.addReplyCommentId;
+        let showAddReplyInput;
+        if (id === addReplyCommentId) {
+            showAddReplyInput =
+                <AddReplyInput id={id} onAddReply={this.onAddReply} toggleReply={this.toggleReply} replies={replies}>
+            </AddReplyInput>;
+        }
         return (
             <div>
                 <div className="comment-wrap">
@@ -50,12 +66,16 @@ class Comment extends Component {
                     <div className="time">
                         Posted on Jan 18, 2019
                     </div>
+                    <div className="add-reply" onClick={() => this.toggleReply(id)}>
+                        Reply
+                    </div>
                     {userId === 10 && id !== editCommentId && editCommentText }
                     {this.displayEditComment}
                 </div>
                 <div className="replies-wrap">
                     {replies.map((reply) => this.renderReplies(reply, id))}
                 </div>
+                {showAddReplyInput}
             </div>
         );
     }
@@ -80,5 +100,40 @@ class EditCommentInput extends Component {
         );
     }
 
+}
+class AddReplyInput extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { value: '' };
+        this.addNewReplyOnchange = this.addNewReplyOnchange.bind(this);
+        this.saveNewReply = this.saveNewReply.bind(this);
+    }
+    addNewReplyOnchange(event) {
+        this.setState({ value: event.target.value });
+    }
+    saveNewReply() {
+        const commentId = this.props.id;
+        const replies = this.props.replies;
+        const text = this.state.value;
+        let id = 1;
+        if (replies !== undefined && replies.length > 0) {
+            id = replies.length + 1;
+        }
+        const userId = 10;
+        const userName = 'Anonymous';
+        const reply = { commentId, id, userId, userName, text };
+        this.props.onAddReply(reply);
+        this.props.toggleReply(-1);
+    }
+    render() {
+        const value = this.state.value;
+        return (
+            <div className="add-new-reply">
+                <input type="text" className="form-control" placeholder="Add Reply here.." value={value} onChange={this.addNewReplyOnchange} />
+                <div className="save-reply-text" onClick={this.saveNewReply}>Save</div>
+                <div className="cancel-reply-text" onClick={() => this.props.toggleReply(-1)}>Cancel</div>
+            </div>
+        )
+    }
 }
 export default Comment;

@@ -8,6 +8,7 @@ class CommentsList extends Component {
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.showAddComment = this.showAddComment.bind(this);
         this.onEditcomment = this.onEditcomment.bind(this);
+        this.onAddReply = this.onAddReply.bind(this);
     }
     onFormSubmit(text) {
         const comments = this.props.comments;
@@ -31,10 +32,28 @@ class CommentsList extends Component {
         });
         this.props.onEditcomment(new_comments);
     }
+    onAddReply(reply){
+        const commentId = reply.commentId;
+        const comments = this.props.comments;
+        const new_comments = [];
+        comments.forEach(comment => {
+            let data = comment;
+            if (comment.id === commentId) {
+                if (data.replies === undefined || data.replies.length === 0) {
+                    data.replies = [reply];
+                }
+                else {
+                    data.replies.push(reply);
+                }
+            }
+            new_comments.push(data);
+        });
+        this.props.onAddReply(new_comments);
+    }
     renderComment(commentData) {
         return (
             <div key={commentData.id}>
-                <Comment commentData={commentData} onEditcomment={this.onEditcomment}/>
+                <Comment commentData={commentData} onEditcomment={this.onEditcomment} onAddReply={this.onAddReply}/>
             </div>
         );
     }

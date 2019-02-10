@@ -40,25 +40,8 @@ class PostDetail extends Component {
         });
         this.setState({ comments: new_comments });
     }
-    onAddReply(reply) {
-        const commentId = reply.commentId;
-        const comments = this.state.comments;
-        const new_comments = [];
-        comments.forEach(comment => {
-            let data = comment;
-            if (comment.id === commentId) {
-                if(data.replies === undefined || data.replies.length === 0)
-                {
-                    data.replies = [reply];
-                }
-                else
-                {
-                    data.replies.push(reply);
-                }
-            }
-            new_comments.push(data);
-        });
-        this.setState({ comments: new_comments });
+    onAddReply(comments) {
+        this.setState({ comments });
     }
     render() {
         const { postData } = this.props.location.state;
