@@ -20,25 +20,8 @@ class PostDetail extends Component {
     onEditcomment(comments){
         this.setState({ comments});
     }
-    onEditReply(editedReply) {
-        const comments = this.state.comments;
-        const new_comments = [];
-        comments.forEach(comment => {
-            let data = comment;
-            if (comment.id === editedReply.commentId) {
-                let replies = [];
-                data.replies.forEach(reply => {
-                    let new_reply = reply;
-                    if (reply.id === editedReply.replyId) {
-                        new_reply.text = editedReply.text
-                    }
-                    replies.push(new_reply);
-                });
-                data.replies = replies;
-            }
-            new_comments.push(data);
-        });
-        this.setState({ comments: new_comments });
+    onEditReply(comments) {
+        this.setState({ comments });
     }
     onAddReply(comments) {
         this.setState({ comments });

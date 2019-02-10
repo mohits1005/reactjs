@@ -3,20 +3,29 @@ import Reply from './reply';
 class Comment extends Component {
     constructor(props) {
         super(props);
-        this.state = { editCommentId: -1, addReplyCommentId: -1 }
+        this.state = { editCommentId: -1, addReplyCommentId: -1, editReplyId: -1 }
         this.toggleEditComment = this.toggleEditComment.bind(this);
         this.saveEditComment = this.saveEditComment.bind(this);
         this.toggleReply = this.toggleReply.bind(this);
         this.onAddReply = this.onAddReply.bind(this);
+        this.toggleEditReply = this.toggleEditReply.bind(this);
     }
     toggleEditComment(id) {
         this.setState({ editCommentId: id});
     }
+    toggleEditReply(commentId, replyId) {
+        if (commentId === -1) {
+            this.setState({ editCommentId: -1, editReplyId: -1 })
+        }
+        else
+            this.setState({ editCommentId: commentId, editReplyId: replyId })
+    }
     renderReplies(replyData, commentId) {
         const { id } = replyData;
+        const { editCommentId, editReplyId } = this.state;
         return (
             <div key={id}>
-                <Reply replyData={replyData}/>
+                <Reply replyData={replyData} commentId={commentId} editCommentId={editCommentId} editReplyId={editReplyId} toggleEditReply={this.toggleEditReply} saveEditReply={this.props.saveEditReply}/>
             </div>
         );
     }
@@ -34,7 +43,7 @@ class Comment extends Component {
     }
     render() {
         const { id, userId, text, userName, replies } = this.props.commentData;
-        const editCommentId= this.state.editCommentId;
+        const { editCommentId, editReplyId }= this.state;
         const editCommentText =
             <div className="edit-comment-wrap" onClick={() => this.toggleEditComment(id, text)} >
                 <div className="edit-comment-text">Edit</div>
@@ -60,8 +69,8 @@ class Comment extends Component {
                         {userName}
                     </div>
                     <div>
-                        {id !== editCommentId && text }
-                        {showEditCommentInput}
+                        {(id !== editCommentId || editReplyId !== -1) && text }
+                        {editReplyId === -1 && showEditCommentInput}
                     </div>
                     <div className="time">
                         Posted on Jan 18, 2019
