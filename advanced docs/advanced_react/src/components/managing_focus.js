@@ -16,8 +16,7 @@ class ManagingFocus extends React.Component {
         // Now you can set focus when required.
         this.inputElement.current.focus();
     }
-    render() {
-        
+    render() { 
         return (
             <CustomTextInput inputRef={this.inputElement} />
         );
