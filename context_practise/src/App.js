@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const ModernFamily = (props) => {
+  return (
+    <Family name={props.name} />
+  );
+}
+
 const Family = (props) => {
   return(
     <Person name={props.name}/>
@@ -29,7 +35,7 @@ class App extends Component {
     return (
       <div>
         I am the App
-        <Family name={this.state.name}/>
+        <ModernFamily name={this.state.name}/>
       </div>
     );
   }
