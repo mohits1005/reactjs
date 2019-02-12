@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ContextUsage from './components/context_usage_practise';
+import DynamicContext from './components/dynamic_context';
 class App extends Component {
   render() {
     return (
@@ -10,7 +10,8 @@ class App extends Component {
         {/* <OuterClickExample /> */}
         {/* <MyComponent /> */}
         {/* <ContextPractise /> */}
-        <ContextUsage />
+        {/* <ContextUsage /> */}
+        <DynamicContext />
       </div>
     );
   }
