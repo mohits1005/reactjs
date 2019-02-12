@@ -47,3 +47,19 @@ ReactDOM.render(
         </Switch>
     </BrowserRouter>
 , document.getElementById('root'));
+15) In case of class, it extends component or React.component and use render function
+In case of function, it doesn’t extends neither has render function just return
+16) Context
+const MyContext = React.createContext(defaultValue);
+When React renders a component that subscribes to this Context object it will read the current context value from the closest matching Provider above it in the tree.
+<MyContext.Provider value={/* some value */}>
+Every Context object comes with a Provider React component that allows consuming components to subscribe to context changes.
+All consumers that are descendants of a Provider will re-render whenever the Provider’s value prop changes.
+MyClass.contextType = MyContext
+This lets you consume the nearest current value of that Context type using this.context. 
+imp: 
+a) createContext
+b) context.Provider value=""
+c) class.contextType = context
+d) this.context 
+
