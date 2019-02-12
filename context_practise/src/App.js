@@ -2,28 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const ModernFamily = (props) => {
-  return (
-    <Family name={props.name} />
-  );
-}
 
-const Family = (props) => {
-  return(
-    <Person name={props.name}/>
-  );
-}
+//first we will make a new context
+const MyContext = React.createContext();
 
-class Person extends Component{
-  render(){
-    return(
-      <div>
-        I am {this.props.name}
-      </div>
-    )
-  }
-}
-class App extends Component {
+//second we will create a provider component
+class MyProvider extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -31,12 +15,65 @@ class App extends Component {
       age: 23
     }
   }
+  render(){
+    return(
+      <MyContext.Provider value={{state: this.state}}>
+        {this.props.children}
+      </MyContext.Provider>
+    );
+  }
+}
+
+const ModernFamily = (props) => {
+  return (
+    <Family />
+  );
+}
+
+const Family = (props) => {
+  return(
+    <Person />
+  );
+}
+
+const renderPerson = (context) => {
+  return(
+    <React.Fragment>
+      <div>
+        I am {context.state.name}
+      </div>
+      <div>
+        Age:  {context.state.age}
+      </div>
+    </React.Fragment>
+  );
+}
+
+class Person extends Component{
+  render(){
+    //fourth we add a consumer
+    return(
+      <div>
+        <MyContext.Consumer>
+          {renderPerson}
+        </MyContext.Consumer>
+      </div>
+    )
+  }
+}
+class App extends Component {
+  constructor(props){
+    super(props);
+  }
   render() {
     return (
-      <div>
-        I am the App
-        <ModernFamily name={this.state.name}/>
-      </div>
+      //third wrap entire application in provider
+      <MyProvider>
+        <div>
+          I am the App
+          <ModernFamily/>
+        </div>
+      </MyProvider>
     );
   }
 }
