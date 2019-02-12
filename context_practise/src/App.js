@@ -17,7 +17,12 @@ class MyProvider extends Component{
   }
   render(){
     return(
-      <MyContext.Provider value={{state: this.state}}>
+      <MyContext.Provider value={{
+        state: this.state,
+        incrementAge: () => {
+          this.setState({age: this.state.age+1})
+        }
+      }}>
         {this.props.children}
       </MyContext.Provider>
     );
@@ -45,6 +50,9 @@ const renderPerson = (context) => {
       <div>
         Age:  {context.state.age}
       </div>
+      <button onClick={context.incrementAge}>
+        Increment Age
+      </button>
     </React.Fragment>
   );
 }
