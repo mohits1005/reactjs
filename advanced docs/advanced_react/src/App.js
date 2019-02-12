@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import DynamicContext from './components/dynamic_context';
+import UpdateContextChild from './components/update_context_child';
 class App extends Component {
   render() {
     return (
@@ -11,7 +11,8 @@ class App extends Component {
         {/* <MyComponent /> */}
         {/* <ContextPractise /> */}
         {/* <ContextUsage /> */}
-        <DynamicContext />
+        {/* <DynamicContext /> */}
+        <UpdateContextChild />
       </div>
     );
   }
