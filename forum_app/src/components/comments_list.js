@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Comment from './comment';
+import MyContext from './context';
 class CommentsList extends Component {
     constructor(props) {
         super(props);
@@ -82,9 +83,15 @@ class CommentsList extends Component {
         this.setState({isVisible:true});
     }
     render() {
-        const comments = this.props.comments;
-        const comments_count = comments.length;
-        const comments_string = comments_count > 0 ? 'There are '+comments_count + ' Comments ':'';
+        // const comments = this.props.comments;
+        // const comments_count = comments.length;
+        // const comments_string = comments_count > 0 ? 'There are '+comments_count + ' Comments ':'';
+        // const comments_string = 'There are 0 Comments:';
+        const comments_string = (comments) => {
+            const comments_count = comments.length;
+            const string = comments_count > 0 ? 'There are '+comments_count + ' Comments ':'';
+            return string;
+        }
         let addinput;
         if (this.state.isVisible)
         {
@@ -92,17 +99,23 @@ class CommentsList extends Component {
         }
         return (
             <div>
-                <div className="row">
-                    <div className="col-xs-12 col-sm-10 col-md-8 comments-container">
-                        <div className="comments-count">
-                            {comments_string}
-                            <span className="add-comment" onClick={this.showAddComment}>
-                                ADD YOURS
-                            </span>
-                        </div>
-                        {comments.map(this.renderComment)}
-                    </div>
-                </div>
+                <MyContext.Consumer>
+                    {
+                        (context) => (
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-10 col-md-8 comments-container">
+                                    <div className="comments-count">
+                                        {comments_string(context.state.comments)}
+                                        <span className="add-comment" onClick={this.showAddComment}>
+                                            ADD YOURS
+                                        </span>
+                                    </div>
+                                    {context.state.comments.map(this.renderComment)}
+                                </div>
+                            </div>
+                        )
+                    }
+                </MyContext.Consumer>
                 {addinput}
             </div>
         );
