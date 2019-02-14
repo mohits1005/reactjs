@@ -11,7 +11,10 @@ class MyProvider extends Component {
     render() {
         return (
             <MyContext.Provider value={{
-                state: this.state
+                state: this.state,
+                onAddcomment: (comments) => {
+                    this.setState({ comments });
+                }
             }}>
                 {this.props.children}
             </MyContext.Provider>
