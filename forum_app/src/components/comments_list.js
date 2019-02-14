@@ -6,22 +6,10 @@ class CommentsList extends Component {
         super(props);
         this.state = { isVisible: false };
         this.renderComment = this.renderComment.bind(this);
-        this.onFormSubmit = this.onFormSubmit.bind(this);
         this.showAddComment = this.showAddComment.bind(this);
         this.onEditcomment = this.onEditcomment.bind(this);
         this.onAddReply = this.onAddReply.bind(this);
         this.saveEditReply = this.saveEditReply.bind(this);
-    }
-    onFormSubmit(text) {
-        const comments = this.props.comments;
-        const id = comments.length + 1;
-        const userId = 10;
-        const userName = 'Anonymous';
-        const replies = [];
-        const comment = { id, userId, userName, text, replies };
-        comments.push(comment);
-        // this.props.onAddcomment(comments);
-
     }
     onEditcomment(editedComment) {
         const comments = this.props.comments;
@@ -95,14 +83,13 @@ class CommentsList extends Component {
         }
         let addinput;
         if (this.state.isVisible) {
-            addinput = <AddCommentInput onFormSubmit={this.onFormSubmit} />
+            addinput = <AddCommentInput />
         }
         return (
             <div>
                 <MyContext.Consumer>
                     {
                         (context) => (
-                            <React.Fragment >
                                 <div className="row">
                                     <div className="col-xs-12 col-sm-10 col-md-8 comments-container">
                                         <div className="comments-count">
@@ -114,12 +101,11 @@ class CommentsList extends Component {
                                         {context.state.comments.map(this.renderComment)}
                                     </div>
                                 </div>
-                                {addinput}
-                            </React.Fragment>
+                                
                         )
                     }
                 </MyContext.Consumer>
-
+                {addinput}
             </div>
         );
     }
