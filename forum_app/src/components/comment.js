@@ -53,7 +53,7 @@ class Comment extends Component {
         if (userId === 10 && id === editCommentId)
         {
             showEditCommentInput = 
-                <EditCommentInput text={text} saveEditComment={this.saveEditComment} toggleEditComment={this.toggleEditComment} editCommentId={editCommentId}>
+                <EditCommentInput text={text} toggleEditComment={this.toggleEditComment} editCommentId={editCommentId}>
                 </EditCommentInput>;
         }
         const addReplyCommentId = this.state.addReplyCommentId;
