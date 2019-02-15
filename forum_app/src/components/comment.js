@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Reply from './reply';
+import MyContext from './context';
 class Comment extends Component {
     constructor(props) {
         super(props);
@@ -52,7 +53,7 @@ class Comment extends Component {
         if (userId === 10 && id === editCommentId)
         {
             showEditCommentInput = 
-                <EditCommentInput text={text} saveEditComment={this.saveEditComment} toggleEditComment={this.toggleEditComment}>
+                <EditCommentInput text={text} saveEditComment={this.saveEditComment} toggleEditComment={this.toggleEditComment} editCommentId={editCommentId}>
                 </EditCommentInput>;
         }
         const addReplyCommentId = this.state.addReplyCommentId;
@@ -94,21 +95,46 @@ class EditCommentInput extends Component {
         super(props);
         this.state = { editCommentValue: props.text };
         this.onInputChange = this.onInputChange.bind(this);
+        this.saveEditComment = this.saveEditComment.bind(this);
     }
     onInputChange(event) {
         this.setState({ editCommentValue: event.target.value });
     }
+    saveEditComment(editCommentValue, context) {
+        const id = this.props.editCommentId;
+        const val = editCommentValue;
+        // const id = this.state.editCommentId;
+        // this.props.onEditcomment({ id, val });
+        const comments = context.state.comments;
+        const new_comments = [];
+        comments.forEach(comment => {
+            let data = comment;
+            if (comment.id === id) {
+                data.text = val;
+            }
+            new_comments.push(data);
+        });
+        context.onEditcomment(new_comments);
+        this.props.toggleEditComment(-1);
+    }
     render() {
         const editCommentValue = this.state.editCommentValue;
         return (
-            <div className="save-comment-wrap">
-                <input type="text" className="form-control" value={editCommentValue} onChange={this.onInputChange} />
-                <div className="save-comment-text" onClick={() => this.props.saveEditComment(editCommentValue)}>Save</div>
-                <div className="cancel-comment-text" onClick={() => this.props.toggleEditComment(-1)}>Cancel</div>
+            <div>
+                <MyContext.Consumer>
+                    {
+                        (context) => (
+                            <div className="save-comment-wrap">
+                                <input type="text" className="form-control" value={editCommentValue} onChange={this.onInputChange} />
+                                <div className="save-comment-text" onClick={() => this.saveEditComment(editCommentValue, context)}>Save</div>
+                                <div className="cancel-comment-text" onClick={() => this.props.toggleEditComment(-1)}>Cancel</div>
+                            </div>
+                        )
+                    }
+                </MyContext.Consumer>
             </div>
         );
     }
-
 }
 class AddReplyInput extends Component {
     constructor(props) {
