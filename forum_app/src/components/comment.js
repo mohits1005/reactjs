@@ -25,7 +25,7 @@ class Comment extends Component {
         const { editCommentId, editReplyId } = this.state;
         return (
             <div key={id}>
-                <Reply replyData={replyData} commentId={commentId} editCommentId={editCommentId} editReplyId={editReplyId} toggleEditReply={this.toggleEditReply} saveEditReply={this.props.saveEditReply}/>
+                <Reply replyData={replyData} commentId={commentId} editCommentId={editCommentId} editReplyId={editReplyId} toggleEditReply={this.toggleEditReply}/>
             </div>
         );
     }

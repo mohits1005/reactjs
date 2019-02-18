@@ -33,26 +33,6 @@ class MyProvider extends Component {
 class PostDetail extends Component {
     constructor(props){
         super(props);
-        // this.state = {comments: COMMENTS};
-        this.onAddcomment = this.onAddcomment.bind(this);
-        this.onEditcomment = this.onEditcomment.bind(this);
-        this.onAddReply = this.onAddReply.bind(this);
-        this.onEditReply = this.onEditReply.bind(this);
-    }
-    onAddcomment(comments){
-        // this.setState({ comments });
-    }
-    changeFilterText(value) {
-        return;
-    }
-    onEditcomment(comments){
-        // this.setState({ comments});
-    }
-    onEditReply(comments) {
-        // this.setState({ comments });
-    }
-    onAddReply(comments) {
-        // this.setState({ comments });
     }
     render() {
         const { postData } = this.props.location.state;
@@ -72,7 +52,7 @@ class PostDetail extends Component {
                                 {postData.content}
                             </div>
                             <hr />
-                            <CommentsList onAddcomment={this.onAddcomment} onEditcomment={this.onEditcomment} onAddReply={this.onAddReply} onEditReply={this.onEditReply}/>
+                            <CommentsList/>
                         </div>
                     </div>
                 </MyProvider>
