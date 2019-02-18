@@ -146,7 +146,7 @@ class AddReplyInput extends Component {
     addNewReplyOnchange(event) {
         this.setState({ value: event.target.value });
     }
-    saveNewReply() {
+    saveNewReply(context) {
         const commentId = this.props.id;
         const replies = this.props.replies;
         const text = this.state.value;
@@ -157,17 +157,39 @@ class AddReplyInput extends Component {
         const userId = 10;
         const userName = 'Anonymous';
         const reply = { commentId, id, userId, userName, text };
-        this.props.onAddReply(reply);
+        // this.props.onAddReply(reply);
+
+        const comments = context.state.comments;
+        const new_comments = [];
+        comments.forEach(comment => {
+            let data = comment;
+            if (comment.id === commentId) {
+                if (data.replies === undefined || data.replies.length === 0) {
+                    data.replies = [reply];
+                }
+                else {
+                    data.replies.push(reply);
+                }
+            }
+            new_comments.push(data);
+        });
+        context.onAddReply(new_comments);
+
         this.props.toggleReply(-1);
     }
     render() {
         const value = this.state.value;
         return (
-            <div className="add-new-reply">
-                <input type="text" className="form-control" placeholder="Add Reply here.." value={value} onChange={this.addNewReplyOnchange} />
-                <div className="save-reply-text" onClick={this.saveNewReply}>Save</div>
-                <div className="cancel-reply-text" onClick={() => this.props.toggleReply(-1)}>Cancel</div>
-            </div>
+            <MyContext.Consumer>
+                {
+                    (context) => (
+                        <div className="add-new-reply">
+                            <input type="text" className="form-control" placeholder="Add Reply here.." value={value} onChange={this.addNewReplyOnchange} />
+                            <div className="save-reply-text" onClick={() => this.saveNewReply(context)}>Save</div>
+                            <div className="cancel-reply-text" onClick={() => this.props.toggleReply(-1)}>Cancel</div>
+                        </div>
+                    )}
+            </MyContext.Consumer>
         )
     }
 }
