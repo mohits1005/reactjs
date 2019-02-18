@@ -7,26 +7,7 @@ class CommentsList extends Component {
         this.state = { isVisible: false };
         this.renderComment = this.renderComment.bind(this);
         this.showAddComment = this.showAddComment.bind(this);
-        this.onAddReply = this.onAddReply.bind(this);
         this.saveEditReply = this.saveEditReply.bind(this);
-    }
-    onAddReply(reply) {
-        const commentId = reply.commentId;
-        const comments = this.props.comments;
-        const new_comments = [];
-        comments.forEach(comment => {
-            let data = comment;
-            if (comment.id === commentId) {
-                if (data.replies === undefined || data.replies.length === 0) {
-                    data.replies = [reply];
-                }
-                else {
-                    data.replies.push(reply);
-                }
-            }
-            new_comments.push(data);
-        });
-        this.props.onAddReply(new_comments);
     }
     saveEditReply(commentId, editedReply) {
         const comments = this.props.comments;
@@ -51,7 +32,7 @@ class CommentsList extends Component {
     renderComment(commentData, context) {
         return (
             <div key={commentData.id}>
-                <Comment commentData={commentData} onAddReply={this.onAddReply} saveEditReply={this.saveEditReply} />
+                <Comment commentData={commentData} saveEditReply={this.saveEditReply} />
             </div>
         );
     }

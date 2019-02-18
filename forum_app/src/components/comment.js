@@ -8,7 +8,6 @@ class Comment extends Component {
         this.toggleEditComment = this.toggleEditComment.bind(this);
         this.saveEditComment = this.saveEditComment.bind(this);
         this.toggleReply = this.toggleReply.bind(this);
-        this.onAddReply = this.onAddReply.bind(this);
         this.toggleEditReply = this.toggleEditReply.bind(this);
     }
     toggleEditComment(id) {
@@ -38,10 +37,6 @@ class Comment extends Component {
     toggleReply(id){
         this.setState({ addReplyCommentId: id});
     }
-    onAddReply(reply){
-        // console.log(reply);
-        this.props.onAddReply(reply);
-    }
     render() {
         const { id, userId, text, userName, replies } = this.props.commentData;
         const { editCommentId, editReplyId }= this.state;
@@ -60,7 +55,7 @@ class Comment extends Component {
         let showAddReplyInput;
         if (id === addReplyCommentId) {
             showAddReplyInput =
-                <AddReplyInput id={id} onAddReply={this.onAddReply} toggleReply={this.toggleReply} replies={replies}>
+                <AddReplyInput id={id} toggleReply={this.toggleReply} replies={replies}>
             </AddReplyInput>;
         }
         return (
@@ -157,7 +152,6 @@ class AddReplyInput extends Component {
         const userId = 10;
         const userName = 'Anonymous';
         const reply = { commentId, id, userId, userName, text };
-        // this.props.onAddReply(reply);
 
         const comments = context.state.comments;
         const new_comments = [];
