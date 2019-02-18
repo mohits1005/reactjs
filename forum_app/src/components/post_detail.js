@@ -20,6 +20,9 @@ class MyProvider extends Component {
                 },
                 onAddReply: (comments) => {
                     this.setState({ comments });
+                },
+                onEditReply: (comments) => {
+                    this.setState({ comments });
                 }
             }}>
                 {this.props.children}
