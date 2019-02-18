@@ -46,7 +46,6 @@ class EditReplyInput extends Component {
     onSaveEditReply(context){
         let { commentId, replyData } = this.props;
         replyData.text = this.state.editReplyValue;
-        // this.props.saveEditReply(commentId, replyData);
 
         const comments = context.state.comments;
         const new_comments = [];

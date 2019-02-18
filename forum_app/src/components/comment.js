@@ -6,7 +6,6 @@ class Comment extends Component {
         super(props);
         this.state = { editCommentId: -1, addReplyCommentId: -1, editReplyId: -1 }
         this.toggleEditComment = this.toggleEditComment.bind(this);
-        this.saveEditComment = this.saveEditComment.bind(this);
         this.toggleReply = this.toggleReply.bind(this);
         this.toggleEditReply = this.toggleEditReply.bind(this);
     }
@@ -28,11 +27,6 @@ class Comment extends Component {
                 <Reply replyData={replyData} commentId={commentId} editCommentId={editCommentId} editReplyId={editReplyId} toggleEditReply={this.toggleEditReply}/>
             </div>
         );
-    }
-    saveEditComment(val) {
-        const id = this.state.editCommentId;
-        this.props.onEditcomment({ id, val });
-        this.toggleEditComment(-1);
     }
     toggleReply(id){
         this.setState({ addReplyCommentId: id});
@@ -98,8 +92,6 @@ class EditCommentInput extends Component {
     saveEditComment(editCommentValue, context) {
         const id = this.props.editCommentId;
         const val = editCommentValue;
-        // const id = this.state.editCommentId;
-        // this.props.onEditcomment({ id, val });
         const comments = context.state.comments;
         const new_comments = [];
         comments.forEach(comment => {

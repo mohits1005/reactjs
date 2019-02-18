@@ -19,10 +19,6 @@ class CommentsList extends Component {
         this.setState({ isVisible: true });
     }
     render() {
-        // const comments = this.props.comments;
-        // const comments_count = comments.length;
-        // const comments_string = comments_count > 0 ? 'There are '+comments_count + ' Comments ':'';
-        // const comments_string = 'There are 0 Comments:';
         const comments_string = (comments) => {
             const comments_count = comments.length;
             const string = comments_count > 0 ? 'There are ' + comments_count + ' Comments ' : '';
