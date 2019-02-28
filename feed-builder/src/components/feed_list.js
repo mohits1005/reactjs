@@ -3,21 +3,21 @@ import FeedElement from './feed_element';
 class FeedList extends Component {
     constructor(props) {
         super(props);
-        this.renderPost = this.renderPost.bind(this);
-    }
-    renderPost(postData) {
-        return (
-            <FeedElement postData={postData} key={postData.id}/>
-        );
     }
     render() {
         const posts = this.props.posts;
+        var lists = posts.map(function (postData, index) {
+            return (
+                <FeedElement postData={postData} key={index}>
+                </FeedElement>
+            )
+        });
         return (
-            <div className="row">
-                <div className="col-xs-12 col-sm-10 col-md-8 center-container">
-                    {posts.map(this.renderPost)}
+                <div className="col-sm-6 col-xs-12 feed-list-container center-container">
+                    <div className="row">
+                        {lists}
+                     </div>
                 </div>
-            </div>
         );
     }
 }
