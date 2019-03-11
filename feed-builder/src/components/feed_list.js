@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import FeedElement from './feed_element';
+import { Row, Column } from './responsive';
+import styles from '../styles/styles.css';
 class FeedList extends Component {
     constructor(props) {
         super(props);
@@ -13,11 +15,11 @@ class FeedList extends Component {
             )
         });
         return (
-                <div className="col-sm-6 col-xs-12 feed-list-container center-container">
-                    <div className="row">
+                <Row style={styles.center_container}>
+                    <Column sm="6" xs="12" center>
                         {lists}
-                     </div>
-                </div>
+                     </Column>
+                </Row>
         );
     }
 }
